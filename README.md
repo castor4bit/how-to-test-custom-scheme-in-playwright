@@ -1,8 +1,18 @@
+# How to test custom scheme in playwright
+
+## Run server
+
 ```
-npm install
-npm run start
+yarn
+yarn start
 ```
 
 ```
 open http://localhost:3000
+```
+
+## Run test
+
+```
+yarn test
 ```

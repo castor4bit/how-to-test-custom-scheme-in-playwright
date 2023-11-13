@@ -1,12 +1,15 @@
 {
   "scripts": {
-    "start": "tsx src/index.tsx"
+    "start": "tsx src/index.tsx",
+    "test": "playwright test"
   },
   "dependencies": {
     "@hono/node-server": "^1.2.2",
     "hono": "^3.10.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.39.0",
+    "@types/node": "^20.9.0",
     "tsx": "^3.12.2"
   }
 }
