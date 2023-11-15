@@ -16,6 +16,37 @@ test.describe("when using Request", () => {
     expect(pathname).toBe("/bar");
     expect(params.get("baz")).toBe("xxx");
   });
+
+  test("multiple redirects led to custom scheme", async ({ request }) => {
+    let redirectedUrl = null;
+
+    const getWithRedirectTracking = async (url) => {
+      try {
+        const response = await request.get(url, {
+          maxRedirects: 0,
+        });
+
+        if (response.status() == 302) {
+          const headers = await response.headers();
+          redirectedUrl = headers["location"] ?? redirectedUrl;
+
+          await getWithRedirectTracking(redirectedUrl);
+        }
+      } catch (e) {
+        console.debug(e);
+      }
+    };
+
+    await getWithRedirectTracking("/redirect-twice");
+
+    const { protocol, hostname, pathname, search } = new URL(redirectedUrl);
+    const params = new URLSearchParams(search);
+
+    expect(protocol).toBe("example:");
+    expect(hostname).toBe("foo");
+    expect(pathname).toBe("/bar");
+    expect(params.get("baz")).toBe("xxx");
+  });
 });
 
 test.describe("when using Page", () => {
