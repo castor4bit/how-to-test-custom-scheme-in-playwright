@@ -41,12 +41,8 @@ test.describe("when using Page", () => {
   test("redirected to custom scheme", async ({ page }) => {
     let redirectedUrl = null;
 
-    page.on("response", async (response) => {
-      const headers = await response.headers();
-      const location = headers["location"];
-      if (location != null) {
-        redirectedUrl = location;
-      }
+    page.on("requestfailed", async (request) => {
+      redirectedUrl = request.url();
     });
 
     await page.goto("/redirect").catch((e) => console.debug(e));
@@ -63,12 +59,8 @@ test.describe("when using Page", () => {
   test("multiple redirects led to custom scheme", async ({ page }) => {
     let redirectedUrl = null;
 
-    page.on("response", async (response) => {
-      const headers = await response.headers();
-      const location = headers["location"];
-      if (location != null) {
-        redirectedUrl = location;
-      }
+    page.on("requestfailed", async (request) => {
+      redirectedUrl = request.url();
     });
 
     await page.goto("/redirect-twice").catch((e) => console.debug(e));
