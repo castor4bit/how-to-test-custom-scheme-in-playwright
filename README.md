@@ -1,4 +1,4 @@
-# How to test custom scheme in playwright
+# How to test custom scheme in Playwright
 
 ## Run server
 
