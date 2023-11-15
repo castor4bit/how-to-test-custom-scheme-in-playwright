@@ -1,7 +1,8 @@
 {
   "scripts": {
     "start": "tsx src/index.tsx",
-    "test": "playwright test"
+    "test": "playwright test",
+    "postinstall": "npx playwright install"
   },
   "dependencies": {
     "@hono/node-server": "^1.2.2",
