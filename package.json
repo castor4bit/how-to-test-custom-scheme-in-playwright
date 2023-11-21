@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "tsx src/index.tsx",
-    "test": "playwright test",
+    "e2e": "playwright test",
     "postinstall": "npx playwright install"
   },
   "dependencies": {

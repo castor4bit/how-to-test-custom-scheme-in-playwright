@@ -3,13 +3,12 @@
 ## Run test
 
 ```
-yarn test
+yarn e2e
 ```
 
 ## Run server
 
 ```
-yarn
 yarn start
 ```
 
